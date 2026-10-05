@@ -4,25 +4,28 @@ const data = await response.json()
 
 const recipes = data.recipes
 
-console.log(recipes)
-
 const main = document.querySelector('main')
+
+console.log('recipes:', recipes)
+console.log('main:', main)
 
 recipes.forEach(recipe => {
 
-    const div = document.createElement('div')
+    const card = document.createElement('div')
 
-    div.classList.add('listing')
+    card.className = 'listing'
 
     const title = document.createElement('h2')
     title.textContent = recipe.name || recipe.title || 'Recipe'
 
     const description = document.createElement('p')
-    description.textContent = recipe.description
+    description.textContent = recipe.description || 'No description'
 
-    div.appendChild(title)
-    div.appendChild(description)
+    card.appendChild(title)
+    card.appendChild(description)
 
-    main.appendChild(div)
+    main.appendChild(card)
 
 })
+
+console.log('cards on page:', document.querySelectorAll('.listing').length)

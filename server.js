@@ -20,9 +20,25 @@ app.get('/recipes', async (req, res) => {
 
         const data = await response.json()
 
-        console.log(data)
+        let recipes = data.recipes
 
-        res.json(data)
+        // Get ?course= from the URL
+        const course = req.query.course
+
+        // If a course was selected, filter the recipes
+        if (course && course !== 'all') {
+
+            recipes = recipes.filter(recipe => {
+
+                return recipe.courses?.includes(course)
+
+            })
+
+        }
+
+        res.json({
+            recipes: recipes
+        })
 
     } catch (error) {
 
@@ -34,7 +50,6 @@ app.get('/recipes', async (req, res) => {
     }
 
 })
-
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`)
 })
