@@ -1,28 +1,28 @@
-import { createNavigation } from './navigation.js';
-import { createListings } from './listings.js';
+const response = await fetch('/recipes')
 
-// fetch a simple list of all pokemon types (fighting, flying, etc.)
-// This only includes the name and url for each.
-const response = await fetch('https://api.tinyplates.dev/recipes')
-const recipes = await response.json()
+const data = await response.json()
 
-createNavigation(recipes)
-createListings(recipes)
+const recipes = data.recipes
 
-console.log('List of Recipes', recipes)
+console.log(recipes)
 
-// Let's get more details for each of the types of pokemon
-// this will include a list of member pokemon for each type  
-// note the use of Promise.all to fetch all at once
-const pokemonTypes = await Promise.all(
-  json.results.map(async (pokemonType) => {
-    const data = await fetch(pokemonType.url)
-    return data.json()
-  })
-)
-console.log('Pokemon Types with Details', pokemonTypes)
+const main = document.querySelector('main')
 
-// Now we can build the navigation menu and listings for each type
-createNavigation(pokemonTypes)
-createListings(pokemonTypes)
+recipes.forEach(recipe => {
 
+    const div = document.createElement('div')
+
+    div.classList.add('listing')
+
+    const title = document.createElement('h2')
+    title.textContent = recipe.name || recipe.title || 'Recipe'
+
+    const description = document.createElement('p')
+    description.textContent = recipe.description
+
+    div.appendChild(title)
+    div.appendChild(description)
+
+    main.appendChild(div)
+
+})

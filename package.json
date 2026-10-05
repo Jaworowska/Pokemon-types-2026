@@ -1,6 +1,7 @@
 {
   "name": "pokemon-types-2026",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "server.js",
   "scripts": {
@@ -14,7 +15,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  
   "bugs": {
     "url": "https://github.com/Jaworowska/Pokemon-types-2026/issues"
   },
